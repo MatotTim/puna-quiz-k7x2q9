@@ -1,8 +1,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Puna Quiz</title>
+<title>Punaz Quiz</title>
 <meta name="claude:viewport-fit-sides" content="cover">
-<!-- Puna Quiz V22 -->
+<!-- Punaz Quiz V23 -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&display=swap">
 <style>
 /* Concept : un plateau de jeu télévisé de nuit. Des cercles partout (joueurs, jokers, lettres, paliers), quatre couleurs de réponse, de l'or pour l'argent. */
@@ -474,7 +474,7 @@ body.onthemes .brand { display: none; }
       <path d="M24 6v6M24 36v6M6 24h6M36 24h6" stroke="#2a1305" stroke-width="3" stroke-linecap="round"/>
     </svg>
     <div>
-      <h1 id="h1t">Puna Quiz</h1>
+      <h1 id="h1t">Punaz Quiz</h1>
       <p id="tagl">Quiz en famille</p>
     </div>
   </header>
@@ -497,13 +497,13 @@ body.onthemes .brand { display: none; }
 
   <section id="splash" class="ticket" aria-label="Accueil">
     <div class="ticket-body splash">
-      <p class="splash-t">Puna Quiz</p>
+      <p class="splash-t">Punaz Quiz</p>
       <button class="btn" id="splashGo" type="button">Entrer</button>
     </div>
   </section>
 
   <section id="themes" class="ticket" aria-label="Choix du thème" hidden>
-    <div class="ticket-head"><span>Puna Quiz</span><span>Choisis un thème</span></div>
+    <div class="ticket-head"><span>Punaz Quiz</span><span>Choisis un thème</span></div>
     <div class="ticket-body">
       <div class="themes-row">
         <button class="theme-card cu" id="thCuisine" type="button"><span class="ti" aria-hidden="true">🍽️</span><span class="tn">Cuisine</span><span class="ts">Plats, produits, vins</span></button>
@@ -517,7 +517,7 @@ body.onthemes .brand { display: none; }
   </section>
 
   <section id="setup" class="ticket" aria-label="Préparation de la partie" hidden>
-    <div class="ticket-head"><span id="setT">Puna Quiz</span><span>Nouvelle partie</span></div>
+    <div class="ticket-head"><span id="setT">Punaz Quiz</span><span>Nouvelle partie</span></div>
     <form class="ticket-body" id="setupForm">
       <p class="info" id="info">15 questions, une cagnotte en francs pacifiques à faire grimper jusqu'à 120&nbsp;000&nbsp;000&nbsp;F.</p>
       <ul class="rules">
@@ -562,7 +562,7 @@ body.onthemes .brand { display: none; }
 </main>
 <canvas id="confetti" aria-hidden="true"></canvas>
 <div class="gainpop" id="gainPop" hidden aria-hidden="true"><span class="gc">F</span><span id="gainAmt"></span></div>
-<div class="intro" id="intro" hidden aria-hidden="true"><div class="intro-rays"></div><div class="intro-in"><p class="intro-k" id="introK">Mesdames et messieurs</p><h2 class="intro-t" id="introT">Puna Quiz</h2><p class="intro-s" id="introS">C'est parti !</p></div></div>
+<div class="intro" id="intro" hidden aria-hidden="true"><div class="intro-rays"></div><div class="intro-in"><p class="intro-k" id="introK">Mesdames et messieurs</p><h2 class="intro-t" id="introT">Punaz Quiz</h2><p class="intro-s" id="introS">C'est parti !</p></div></div>
 <div class="palier" id="palier" hidden role="dialog" aria-modal="true" aria-labelledby="palK">
   <div class="pal-card">
     <p class="pal-k" id="palK">Palier atteint</p>
@@ -10657,7 +10657,7 @@ body.onthemes .brand { display: none; }
   var DIFF_STD = ["Échauffement", "Facile", "Costaud", "Difficile", "Expert"];
   var THEMES = {
     cuisine: {
-      name: "Puna Quiz Cuisine", tag: "Quiz culinaire en famille", seen: "puna_seen_" + QUESTIONS_RAW.length, raw: QUESTIONS_RAW,
+      name: "Punaz Quiz Cuisine", tag: "Quiz culinaire en famille", seen: "puna_seen_" + QUESTIONS_RAW.length, raw: QUESTIONS_RAW,
       diffn: ["Échauffement", "Facile", "Costaud", "Difficile", "Chef étoilé"],
       hard: "Les questions deviennent de plus en plus difficiles, jusqu'aux questions de chef étoilé.",
       last: "Dernière ligne droite : des questions de chef étoilé !",
@@ -10666,7 +10666,7 @@ body.onthemes .brand { display: none; }
       intro: ["Mesdames et messieurs", "Spécial tatie", "À table !"], introCls: "", root: 261.63, mus: null
     },
     cinema: {
-      name: "Puna Quiz Cinéma & Séries", tag: "Quiz cinéma et séries en famille", seen: "puna_seen_cinema_" + CINEMA_RAW.length, raw: CINEMA_RAW,
+      name: "Punaz Quiz Cinéma & Séries", tag: "Quiz cinéma et séries en famille", seen: "puna_seen_cinema_" + CINEMA_RAW.length, raw: CINEMA_RAW,
       diffn: ["Générique", "Facile", "Costaud", "Difficile", "Cinéphile"],
       hard: "Les questions deviennent de plus en plus difficiles, jusqu'aux questions de vrais cinéphiles.",
       last: "Dernière ligne droite : des questions de vrais cinéphiles !",
@@ -10676,7 +10676,7 @@ body.onthemes .brand { display: none; }
       mus: { step: bgStepCin, tm: 0.8, dly: 0.46 }
     },
     histoire: {
-      name: "Puna Quiz Histoire", tag: "Quiz histoire de France en famille", seen: "puna_seen_hist_" + HISTOIRE_RAW.length, raw: HISTOIRE_RAW,
+      name: "Punaz Quiz Histoire", tag: "Quiz histoire de France en famille", seen: "puna_seen_hist_" + HISTOIRE_RAW.length, raw: HISTOIRE_RAW,
       diffn: DIFF_STD,
       hard: "Les questions deviennent de plus en plus difficiles, jusqu'aux questions d'historien.",
       last: "Dernière ligne droite : des questions d'historien !",
@@ -10689,7 +10689,7 @@ body.onthemes .brand { display: none; }
         arp: [0, 2, 1, 3, 2, 1, 3, 1], arpW: "triangle", arpLen: 2.6, padW: "sawtooth", padV: 0.026, padLp: 700, perc: "march" }), tm: 0.85, dly: 0.5 }
     },
     musique: {
-      name: "Puna Quiz Musique", tag: "Quiz musique en famille", seen: "puna_seen_mus_" + MUSIQUE_RAW.length, raw: MUSIQUE_RAW,
+      name: "Punaz Quiz Musique", tag: "Quiz musique en famille", seen: "puna_seen_mus_" + MUSIQUE_RAW.length, raw: MUSIQUE_RAW,
       diffn: DIFF_STD,
       hard: "Les questions deviennent de plus en plus difficiles, jusqu'aux questions de mélomane averti.",
       last: "Dernière ligne droite : des questions de mélomane averti !",
@@ -10702,7 +10702,7 @@ body.onthemes .brand { display: none; }
         arp: [0, 1, 2, 3, 2, 1, 3, 2], arpW: "square", arpV: 0.05, arpLp: 1800, arpLen: 1.6, bassAt: [0, 3, 6, 10], bassW: "triangle", bassLen: 1.6, perc: "groove" }), tm: 1.0, dly: 0.375 }
     },
     foot: {
-      name: "Puna Quiz Football", tag: "Quiz football en famille", seen: "puna_seen_foot_" + FOOT_RAW.length, raw: FOOT_RAW,
+      name: "Punaz Quiz Football", tag: "Quiz football en famille", seen: "puna_seen_foot_" + FOOT_RAW.length, raw: FOOT_RAW,
       diffn: DIFF_STD,
       hard: "Les questions deviennent de plus en plus difficiles, jusqu'aux questions de vrai supporter.",
       last: "Dernière ligne droite : des questions de vrai supporter !",
@@ -10715,7 +10715,7 @@ body.onthemes .brand { display: none; }
         arp: [0, 1, 2, 3, 2, 1, 2, 3], arpW: "sawtooth", arpV: 0.045, arpLp: 1600, arpLen: 1.8, padW: "sawtooth", padV: 0.03, padLp: 900, bassAt: [0, 4, 8, 12], bassW: "triangle", bassLen: 2, perc: "stadium" }), tm: 1.0, dly: 0.34 }
     },
     culture: {
-      name: "Puna Quiz Culture générale", tag: "Quiz de culture générale en famille", seen: "puna_seen_cult_" + CULTURE_RAW.length, raw: null, rawFn: cultureRaw,
+      name: "Punaz Quiz Culture générale", tag: "Quiz de culture générale en famille", seen: "puna_seen_cult_" + CULTURE_RAW.length, raw: null, rawFn: cultureRaw,
       diffn: DIFF_STD,
       hard: "Les questions deviennent de plus en plus difficiles, jusqu'aux questions de grand érudit.",
       last: "Dernière ligne droite : des questions de grand érudit !",
@@ -11106,7 +11106,7 @@ body.onthemes .brand { display: none; }
     if (!AC) return;
     var t = AC.currentTime + 0.005;
     var bus = AC.createGain();
-    bus.gain.value = 1;
+    bus.gain.value = 3.2;
     bus.connect(master);
     var o = AC.createOscillator();
     var g = AC.createGain();
@@ -11126,11 +11126,16 @@ body.onthemes .brand { display: none; }
     var t = AC.currentTime + 0.16;
     var D = LOCK_MS / 1000;
     var bus = AC.createGain();
-    bus.gain.value = 1;
+    bus.gain.value = 3.4;
     bus.connect(master);
-    thump(bus, t, 1.0);
-    tickSound(bus, t, 0.6);
-    note(bus, "sine", 880, t, 0.9, 0.5, 0.003);
+    function knock(at, v) {
+      thump(bus, at, v);
+      tickSound(bus, at, Math.min(1, v * 0.9));
+      note(bus, "triangle", 620, at, 0.12, Math.min(0.6, v * 0.5), 0.002);
+      note(bus, "sine", 310, at, 0.18, Math.min(0.6, v * 0.5), 0.002);
+    }
+    knock(t, 1.0);
+    note(bus, "sine", 880, t, 0.9, 0.8, 0.003);
     note(bus, "sine", 1318.51, t, 0.7, 0.3, 0.003);
     note(bus, "triangle", 440, t, 0.6, 0.3, 0.003);
     var sw = AC.createOscillator(), sg = AC.createGain();
@@ -11138,12 +11143,12 @@ body.onthemes .brand { display: none; }
     sw.frequency.setValueAtTime(180, t + 0.3);
     sw.frequency.exponentialRampToValueAtTime(420, t + D - 0.3);
     sg.gain.setValueAtTime(0.0001, t + 0.3);
-    sg.gain.linearRampToValueAtTime(0.07, t + D - 0.5);
+    sg.gain.linearRampToValueAtTime(0.2, t + D - 0.5);
     sg.gain.exponentialRampToValueAtTime(0.0001, t + D - 0.1);
     sw.connect(sg); sg.connect(bus);
     sw.start(t + 0.3); sw.stop(t + D);
     [0.7, 1.4, 2.0, 2.5, 2.95, 3.3, 3.58, 3.78].forEach(function (dt, i) {
-      if (dt < D - 0.1) thump(bus, t + dt, 0.5 + 0.07 * i);
+      if (dt < D - 0.1) knock(t + dt, 0.7 + 0.07 * i);
     });
   }
 
