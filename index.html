@@ -1,8 +1,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Puna Quiz V17</title>
+<title>Puna Quiz</title>
 <meta name="claude:viewport-fit-sides" content="cover">
-<!-- Puna Quiz V17 -->
+<!-- Puna Quiz V18 -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&display=swap">
 <style>
 /* Concept : un plateau de jeu télévisé de nuit. Des cercles partout (joueurs, jokers, lettres, paliers), quatre couleurs de réponse, de l'or pour l'argent. */
@@ -395,6 +395,26 @@ html[data-theme="cinema"] {
 @keyframes introUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
 @keyframes introT { from { opacity: 0; transform: scale(0.5); filter: blur(8px); } to { opacity: 1; transform: none; filter: none; } }
 @keyframes introOut { to { opacity: 0; } }
+
+.splash-t { font-size: 44px; letter-spacing: -0.01em; }
+.splash { gap: 22px; padding: 44px 24px 36px; }
+body.onsplash .brand, body.onsplash .tools { display: none; }
+body.onsplash .app { min-height: calc(100svh - 60px); justify-content: center; }
+#quit { display: none; margin-left: auto; }
+body.ingame #quit { display: inline-flex; }
+#quit .qt { display: none; font-size: 13px; font-weight: 700; }
+#quit.armed { border-color: rgba(255, 91, 110, 0.7); background: rgba(255, 91, 110, 0.18); }
+#quit.armed .qt { display: inline; }
+#quit.armed svg { color: #ff8a98; }
+.intro.cin .intro-k { display: none; }
+.intro.cin .intro-t { font-size: clamp(46px, 15vw, 72px); }
+.intro.cin .intro-s { font-family: var(--display); font-weight: 800; font-size: clamp(40px, 13vw, 62px); letter-spacing: 0.02em; color: rgb(var(--glow)); text-shadow: 0 0 36px rgba(var(--glow), 0.9), 0 4px 18px rgba(0, 0, 0, 0.5); }
+@media (prefers-reduced-motion: no-preference) { .intro.cin:not([hidden]) .intro-s { animation: introT 0.9s 1.4s cubic-bezier(0.2, 1.3, 0.4, 1) both; } }
+.gainpop { position: fixed; left: 50%; top: 92px; z-index: 15; transform: translateX(-50%); pointer-events: auto; cursor: pointer; display: flex; align-items: center; gap: 10px; padding: 10px 20px 10px 12px; border-radius: 999px; background: linear-gradient(180deg, rgba(255, 224, 138, 0.97), rgba(255, 176, 66, 0.97)); color: #2a1305; font-family: var(--display); font-weight: 800; font-size: 26px; box-shadow: 0 0 0 4px rgba(255, 200, 61, 0.25), 0 14px 34px rgba(0, 0, 0, 0.45); white-space: nowrap; }
+.gainpop[hidden] { display: none; }
+.gainpop .gc { display: grid; place-items: center; width: 34px; height: 34px; border-radius: 50%; background: #2a1305; color: #ffd98a; font-size: 18px; font-weight: 800; }
+@media (prefers-reduced-motion: no-preference) { .gainpop.go { animation: gainUp 2.1s ease-out both; } }
+@keyframes gainUp { 0% { opacity: 0; transform: translate(-50%, 18px) scale(0.6); } 14% { opacity: 1; transform: translate(-50%, 0) scale(1.08); } 24% { transform: translate(-50%, 0) scale(1); } 76% { opacity: 1; transform: translate(-50%, -6px) scale(1); } 100% { opacity: 0; transform: translate(-50%, -26px) scale(0.98); } }
 </style>
 
 <div id="jsWarn" class="jswarn"><strong>Ouvre ce jeu dans Safari.</strong><br>Cet aperçu ne peut pas faire tourner le jeu (ni la musique). Ouvre l'adresse du jeu directement dans Safari.</div>
@@ -419,6 +439,10 @@ html[data-theme="cinema"] {
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="M16.5 8.5a5 5 0 0 1 0 7"/><path d="M19 6a8.5 8.5 0 0 1 0 12"/></svg>
       <span>Sons</span><span class="st" id="sndSt">oui</span>
     </button>
+    <button id="quit" class="tool" type="button" aria-label="Quitter la partie et revenir au choix du thème">
+      <span class="qt">Quitter ?</span>
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 4H5a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h4"/><path d="M16 8l4 4-4 4"/><path d="M20 12H9"/></svg>
+    </button>
     <button id="host" class="tool" type="button" aria-pressed="false" hidden style="display:none">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21"/></svg>
       <span>Animateur</span><span class="st" id="hostSt">oui</span>
@@ -427,10 +451,8 @@ html[data-theme="cinema"] {
 
   <section id="splash" class="ticket" aria-label="Accueil">
     <div class="ticket-body splash">
-      <p class="splash-t">Prêt à jouer ?</p>
-      <p class="splash-s">Monte le son : la musique démarre quand tu entres.<br>Sur iPhone, désactive aussi le mode silencieux.</p>
+      <p class="splash-t">Puna Quiz</p>
       <button class="btn" id="splashGo" type="button">Entrer</button>
-      <p class="ver">Puna Quiz V17</p>
     </div>
   </section>
 
@@ -489,6 +511,7 @@ html[data-theme="cinema"] {
   <section id="result" hidden aria-label="Résultats"></section>
 </main>
 <canvas id="confetti" aria-hidden="true"></canvas>
+<div class="gainpop" id="gainPop" hidden aria-hidden="true"><span class="gc">F</span><span id="gainAmt"></span></div>
 <div class="intro" id="intro" hidden aria-hidden="true"><div class="intro-rays"></div><div class="intro-in"><p class="intro-k" id="introK">Mesdames et messieurs</p><h2 class="intro-t" id="introT">Puna Quiz</h2><p class="intro-s" id="introS">C'est parti !</p></div></div>
 <div class="palier" id="palier" hidden role="dialog" aria-modal="true" aria-labelledby="palK">
   <div class="pal-card">
@@ -501,7 +524,7 @@ html[data-theme="cinema"] {
 
 <script>
 (function () {
-  var LOCK_MS = 1600;
+  var LOCK_MS = 4000;
   var LEVELS = ["Entrée", "Plat", "Dessert"];
   var TEMPO = [108, 114, 120, 128, 136];
   var DIFFN = ["Échauffement", "Facile", "Costaud", "Difficile", "Chef étoilé"];
@@ -4480,7 +4503,7 @@ html[data-theme="cinema"] {
     try { var raw = localStorage.getItem(SEEN_KEY); if (raw) used = JSON.parse(raw) || {}; } catch (e) { used = {}; }
     DIFFN = THEME.diffn;
     document.documentElement.setAttribute("data-theme", id);
-    document.title = THEME.name + " V17";
+    document.title = THEME.name;
     $("h1t").textContent = THEME.name;
     $("tagl").textContent = THEME.tag;
     $("setT").textContent = THEME.name;
@@ -4508,6 +4531,7 @@ html[data-theme="cinema"] {
   function show(id) {
     ["splash", "themes", "setup", "game", "result"].forEach(function (s) { $(s).hidden = s !== id; });
     document.body.classList.toggle("ingame", id === "game");
+    document.body.classList.toggle("onsplash", id === "splash");
     window.scrollTo(0, 0);
   }
 
@@ -4828,9 +4852,28 @@ html[data-theme="cinema"] {
   }
 
   /* Verrouillage : un coup net avec une cloche (« c'est enregistré »), puis un cœur qui s'accélère. */
+  function sfxClick() {
+    if (!AC) return;
+    var t = AC.currentTime + 0.005;
+    var bus = AC.createGain();
+    bus.gain.value = 1;
+    bus.connect(master);
+    var o = AC.createOscillator();
+    var g = AC.createGain();
+    o.type = "sine";
+    o.frequency.setValueAtTime(900, t);
+    o.frequency.exponentialRampToValueAtTime(380, t + 0.07);
+    g.gain.setValueAtTime(0.0001, t);
+    g.gain.linearRampToValueAtTime(0.5, t + 0.006);
+    g.gain.exponentialRampToValueAtTime(0.0001, t + 0.11);
+    o.connect(g); g.connect(bus);
+    o.start(t); o.stop(t + 0.14);
+    tickSound(bus, t, 0.5);
+    note(bus, "triangle", 1568, t, 0.08, 0.12, 0.002);
+  }
   function sfxLock() {
     if (!AC) return;
-    var t = AC.currentTime + 0.01;
+    var t = AC.currentTime + 0.16;
     var D = LOCK_MS / 1000;
     var bus = AC.createGain();
     bus.gain.value = 1;
@@ -4840,9 +4883,66 @@ html[data-theme="cinema"] {
     note(bus, "sine", 880, t, 0.9, 0.5, 0.003);
     note(bus, "sine", 1318.51, t, 0.7, 0.3, 0.003);
     note(bus, "triangle", 440, t, 0.6, 0.3, 0.003);
-    [0.55, 0.9, 1.2, 1.4].forEach(function (dt, i) {
-      if (dt < D) thump(bus, t + dt, 0.5 + 0.1 * i);
+    var sw = AC.createOscillator(), sg = AC.createGain();
+    sw.type = "sine";
+    sw.frequency.setValueAtTime(180, t + 0.3);
+    sw.frequency.exponentialRampToValueAtTime(420, t + D - 0.3);
+    sg.gain.setValueAtTime(0.0001, t + 0.3);
+    sg.gain.linearRampToValueAtTime(0.07, t + D - 0.5);
+    sg.gain.exponentialRampToValueAtTime(0.0001, t + D - 0.1);
+    sw.connect(sg); sg.connect(bus);
+    sw.start(t + 0.3); sw.stop(t + D);
+    [0.7, 1.4, 2.0, 2.5, 2.95, 3.3, 3.58, 3.78].forEach(function (dt, i) {
+      if (dt < D - 0.1) thump(bus, t + dt, 0.5 + 0.07 * i);
     });
+  }
+
+  /* Palier : petit jingle de 7 secondes (glockenspiel, nappe de cordes, timbales), distinct de la musique de bonne réponse. */
+  function sfxPalier() {
+    if (!AC) return;
+    var t = AC.currentTime + 0.05;
+    var bus = AC.createGain();
+    bus.gain.value = 1;
+    bus.connect(master);
+    var send = AC.createGain();
+    send.gain.value = 0.45;
+    bus.connect(send);
+    send.connect(rvIn);
+    function gl(f, at, d, v) {
+      note(bus, "sine", f, t + at, d, v, 0.004);
+      note(bus, "triangle", f * 2, t + at, d * 0.5, v * 0.3, 0.004);
+      note(bus, "sine", f * 3, t + at, d * 0.3, v * 0.12, 0.004);
+    }
+    var mel = [
+      [587.33, 0, 0.5], [739.99, 0.22, 0.5], [880.0, 0.44, 0.5], [1174.66, 0.66, 1.2],
+      [1479.98, 1.3, 1.0], [1318.51, 2.0, 0.6], [1174.66, 2.4, 0.9],
+      [783.99, 3.2, 0.5], [987.77, 3.42, 0.5], [1174.66, 3.64, 0.5], [1567.98, 3.86, 1.2],
+      [1479.98, 4.5, 0.6], [1318.51, 5.0, 0.6], [1174.66, 5.5, 0.6]
+    ];
+    mel.forEach(function (m) { gl(m[0], m[1], m[2] + 0.4, 0.2); });
+    [[146.83, 0, 2.9, [293.66, 369.99, 440.0]], [196.0, 2.9, 2.6, [392.0, 493.88, 587.33]], [146.83, 5.5, 3.2, [293.66, 369.99, 440.0, 587.33]]].forEach(function (c) {
+      padNote(bus, "sawtooth", c[0], t + c[1], c[2], 0.03, 600, 0.3);
+      c[3].forEach(function (f) { padNote(bus, "triangle", f, t + c[1], c[2], 0.05, 1100, 0.2); });
+    });
+    note(bus, "sine", 73.42, t, 2.8, 0.3, 0.05);
+    note(bus, "sine", 98.0, t + 2.9, 2.5, 0.3, 0.05);
+    note(bus, "sine", 73.42, t + 5.5, 3.0, 0.34, 0.05);
+    [0, 0.7, 1.4, 2.9, 3.6, 4.3].forEach(function (d) { thump(bus, t + d, 0.5); });
+    for (var i = 0; i < 12; i++) thump(bus, t + 4.9 + i * 0.05, 0.25 + i * 0.03);
+    thump(bus, t + 5.5, 1.0);
+    var s = AC.createBufferSource();
+    s.buffer = noiseLong || noiseBuf;
+    s.loop = true;
+    var hp = AC.createBiquadFilter();
+    hp.type = "highpass";
+    hp.frequency.value = 6500;
+    var cg = AC.createGain();
+    cg.gain.setValueAtTime(0.0001, t + 5.5);
+    cg.gain.linearRampToValueAtTime(0.18, t + 5.58);
+    cg.gain.exponentialRampToValueAtTime(0.0001, t + 7.6);
+    s.connect(hp); hp.connect(cg); cg.connect(bus);
+    s.start(t + 5.5); s.stop(t + 7.7);
+    [2349.3, 1760.0, 2093.0, 2637.0].forEach(function (f, i) { note(bus, "sine", f, t + 5.55 + i * 0.12, 1.8, 0.06, 0.01); });
   }
 
   /* Palier : fanfare de cuivres, roulement de timbales, cymbale et cloches. */
@@ -5328,8 +5428,11 @@ html[data-theme="cinema"] {
     stopVictory();
     var it = $("intro");
     $("introT").textContent = THEME.name;
-    $("introK").textContent = THEME_ID === "cinema" ? "Lumières, caméra" : "Mesdames et messieurs";
-    $("introS").textContent = THEME_ID === "cinema" ? "Action !" : "À table !";
+    var cinI = THEME_ID === "cinema";
+    it.classList.toggle("cin", cinI);
+    if (cinI) $("introT").textContent = "Tourne";
+    $("introK").textContent = cinI ? "" : "Mesdames et messieurs";
+    $("introS").textContent = cinI ? "Action !" : "À table !";
     it.classList.remove("out");
     it.hidden = false;
     sfxIntro(THEME_ID === "cinema");
@@ -5420,6 +5523,7 @@ html[data-theme="cinema"] {
     var qd = S.qs[S.i];
     var opts = shuffle(qd.a.map(function (t, k) { return { t: t, ok: k === 0 }; }));
     stopVictory();
+    hideGain();
     $("palier").hidden = true;
     S.cur = { qd: qd, opts: opts, p: S.i % S.players.length, removed: [], ok: false };
     if (S.walkT) clearTimeout(S.walkT);
@@ -5428,7 +5532,7 @@ html[data-theme="cinema"] {
     S.pick = -1;
 
     $("bon").textContent = (S.mode === "millions" ? "Question " : "Bon n° ") + pad(S.i + 1) + " / " + S.qs.length;
-    $("turn").textContent = (S.mode === "millions" ? DIFFN[qd.d - 1] : LEVELS[qd.lvl - 1]) + (S.players.length > 1 ? " · Tour de " + S.players[S.cur.p].name : "");
+    $("turn").textContent = (S.players.length > 1 ? "Tour de " + S.players[S.cur.p].name : "");
     $("qtext").textContent = qd.q;
 
     var box = $("opts");
@@ -5501,7 +5605,7 @@ html[data-theme="cinema"] {
       ? "Premier palier garanti. Même en cas d'erreur, vous gardez cette somme."
       : "Deuxième palier garanti. Cette somme est à l'abri.";
     $("palier").hidden = false;
-    sfxVictory(true);
+    sfxPalier();
     confetti();
     say(["Palier atteint ! " + euroSpeech(S.safe) + " garantis."]);
     $("palGo").focus();
@@ -5509,7 +5613,7 @@ html[data-theme="cinema"] {
     clearTimeout(S.palT);
     S.palT = setTimeout(function () {
       if (S && S.id === psid && S.i === pi && !$("palier").hidden) $("palGo").click();
-    }, 7500);
+    }, 8500);
   }
   $("palGo").addEventListener("click", function () {
     if (S) clearTimeout(S.palT);
@@ -5549,7 +5653,7 @@ html[data-theme="cinema"] {
     });
     var w = $("walk");
     w.hidden = !(S.phase === "ask" && S.i > 0);
-    w.textContent = S.walkArm ? "Confirmer : empocher " + euro(S.gain) + " ?" : "Je m'arrête et j'empoche " + euro(S.gain);
+    w.textContent = S.walkArm ? "Confirmer : empocher " + euro(S.gain) + " ?" : "Je ne réponds pas : j'empoche " + euro(S.gain);
   }
 
   function renderJokers() {
@@ -5736,6 +5840,7 @@ html[data-theme="cinema"] {
     fb.appendChild(el("p", null, "Le verdict arrive…"));
     fb.hidden = false;
     bgStop(0.35);
+    sfxClick();
     sfxLock();
     var id = S.id;
     S.lockTimer = setTimeout(function () {
@@ -5743,6 +5848,19 @@ html[data-theme="cinema"] {
     }, LOCK_MS);
   }
 
+  var gainT = 0;
+  function showGain(v) {
+    var g = $("gainPop");
+    $("gainAmt").textContent = euro(v);
+    g.hidden = false;
+    g.classList.remove("go");
+    void g.offsetWidth;
+    g.classList.add("go");
+    clearTimeout(gainT);
+    gainT = setTimeout(hideGain, 2200);
+  }
+  $("gainPop").addEventListener("click", function () { hideGain(); });
+  function hideGain() { clearTimeout(gainT); var g = $("gainPop"); g.hidden = true; g.classList.remove("go"); }
   var PRAISE = ["Bonne réponse !", "C'est exact !", "Absolument !", "Tout juste !"];
 
   function reveal() {
@@ -5783,7 +5901,9 @@ html[data-theme="cinema"] {
     fb.appendChild(el("p", null, S.cur.qd.e));
 
     var pal = mm && ok && SAFE_AT.indexOf(S.i) >= 0;
-    if (pal) sfxBlip([784, 988, 1319]); else if (ok) sfxVictory(false); else sfxCartoon();
+    if (pal) sfxBlip([784, 988, 1319]);
+    else if (ok) { sfxVictory(false); if (mm) showGain(S.gain); }
+    else sfxCartoon();
     if (pal) {
       var psid = S.id, pidx = S.i;
       setTimeout(function () {
@@ -5845,6 +5965,32 @@ html[data-theme="cinema"] {
     var map = { a: 0, b: 1, c: 2, d: 3, "1": 0, "2": 1, "3": 2, "4": 3 };
     var k = map[e.key.toLowerCase()];
     if (k !== undefined) choose(k);
+  });
+
+
+  var quitT = 0;
+  function quitGame() {
+    clearTimeout(quitT);
+    $("quit").classList.remove("armed");
+    if (S) {
+      clearTimeout(S.lockTimer); clearTimeout(S.autoT); clearTimeout(S.walkT); clearTimeout(S.palT);
+      S.id = -1;
+      S.phase = "done";
+    }
+    stopSay(); stopVictory(); bgStop(0.3); hideGain();
+    $("palier").hidden = true;
+    show("themes");
+    menuStart();
+  }
+  $("quit").addEventListener("click", function () {
+    var b = $("quit");
+    if (!b.classList.contains("armed")) {
+      b.classList.add("armed");
+      clearTimeout(quitT);
+      quitT = setTimeout(function () { b.classList.remove("armed"); }, 3500);
+      return;
+    }
+    quitGame();
   });
 
   function joinNames(list) {
